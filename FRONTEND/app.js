@@ -79,3 +79,49 @@ function addRow(numero_control, nombre, apellido_paterno, apellido_materno, carr
         body: JSON.stringify(Object.fromEntries(data))
     });
 }
+function updateRow(numero_control, nombre, apellido_paterno, apellido_materno, carrera) {
+    row.cells[0].innerHTML = numero_control;
+    row.cells[1].innerHTML = nombre;
+    row.cells[2].innerHTML = apellido_paterno;
+    row.cells[3].innerHTML = apellido_materno;
+    row.cells[4].innerHTML = carrera;
+    row.cells[5].innerHTML = '<button onclick="editRowFunction(this)">Editar</button> <button onclick="deleteRowFunction(this)">Eliminar</button>';
+    editRow = null;
+}
+function editRowFunction(button) {
+    let row = button.parentNode.parentNode;
+    editRow = row;
+    document.getElementById("numero_control").value = row.cells[0].innerHTML;
+    let noControl = row.cells[0].innerHTML;
+    document.getElementById("nombre").value = row.cells[1].innerHTML;
+    document.getElementById("apellido_paterno").value = row.cells[2].innerHTML;
+    document.getElementById("apellido_materno").value = row.cells[3].innerHTML;
+    document.getElementById("carrera").value = row.cells[4].innerHTML;
+    let carrera = row.cells[4].innerHTML;
+
+    form.elements["numero_control"].focus();
+}
+
+//cambiar el texto del boton "ditar" a "Editando"
+button.textContent = "Editando";
+document.getElementById("carrera").disiabled = false;
+document.getElementById("numero_control").disiabled = true;
+document.getElementById("nombre").disiabled = true;
+document.getElementById("apellido_paterno").disiabled = true;
+document.getElementById("apellido_materno").disiabled = true;
+
+function deleteRowFunction(button) {
+    let row = button.parentNode.parentNode;
+    let numero_control = row.cells[0].innerHTML;
+    row.remove() 
+    fetch(`http://localhost:8080/estudiantes/${numero_control}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "DELETE",
+            "Access-Control-Allow-Headers": "Content-Type" },
+    });
+}
+
+
+
