@@ -29,7 +29,7 @@ fetch('http://localhost:8080/estudiantes')
     });
     }
 
-let form = document.getElementById("myForm");
+let form = document.getElementById("controlForm");
 let editRow = null;
 form.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -105,7 +105,7 @@ function editRowFunction(button) {
     document.getElementById("carrera").value = row.cells[4].innerHTML;
     let carrera = row.cells[4].innerHTML;
     form.elements["numero_control"].focus();
-}
+
     //cambiar el texto del boton "ditar" a "Editando"
     button.textContent = "Editando";
 
@@ -114,7 +114,7 @@ function editRowFunction(button) {
     document.getElementById("nombre").disabled = true;
     document.getElementById("apellido_paterno").disabled = true;
     document.getElementById("apellido_materno").disabled = true;
-
+}
 function deleteRowFunction(button) {
     let row = button.parentNode.parentNode;
     let numero_control = row.cells[0].innerHTML;
