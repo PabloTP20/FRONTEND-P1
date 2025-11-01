@@ -20,10 +20,10 @@ fetch('http://localhost:8080/estudiantes')
         let cell5 = newRow.insertCell(4);
         let cell6 = newRow.insertCell(5);
 
-        cell1.innerHTML = item.numero_control;
+        cell1.innerHTML = item.noControl;
         cell2.innerHTML = item.nombre;
-        cell3.innerHTML = item.apellido_paterno;
-        cell4.innerHTML = item.apellido_materno;
+        cell3.innerHTML = item.ape_paterno;
+        cell4.innerHTML = item.ape_materno;
         cell5.innerHTML = item.carrera;
         cell6.innerHTML = '<button onclick="editRowFunction(this)">Editar</button> <button onclick="deleteRowFunction(this)">Eliminar</button>';
     });
@@ -74,8 +74,8 @@ function addRow(numero_control, nombre, apellido_paterno, apellido_materno, carr
     let data = new FormData();
     data.append("noControl", numero_control);
     data.append("nombre", nombre);
-    data.append("apellido_paterno", apellido_paterno);
-    data.append("apellido_materno", apellido_materno);
+    data.append("ape_paterno", apellido_paterno);
+    data.append("ape_materno", apellido_materno);
     data.append("carrera", carrera);
     fetch("http://localhost:8080/estudiantes", {
         method: "POST",
